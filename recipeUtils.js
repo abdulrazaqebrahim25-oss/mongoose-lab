@@ -1,24 +1,5 @@
-const mongoose = require('mongoose')
-const dboassword = require('dotenv').config()
-const recipeUtilities = require('./recipeUtils')
-// connect to DB 
+const mongoose = require('mongoose');
 
-async function connectToDB() {
-    try{
-
-        await mongoose.connect(process.env.MongoDdUri)
-        console.log("Sucess connetion")
-    }
-    catch(err){
-        console.log("Error in connetion to DB", err)
-    }
-    
-}
-
-// call and make sure its working
-connectToDB() 
-
-/*
 // Schema 
 
 
@@ -40,7 +21,6 @@ const  recipesSchema = new mongoose.Schema({
 
 // Model 
 const Recipes = mongoose.model('Recipes',recipesSchema) 
-
 
 // create Recipe function 
 
@@ -82,7 +62,7 @@ async function getAllRecipe(){
 
 async function updateRecipe(){
     try{
-        const getAndUpdate = await Recipes.findByIdAndUpdate("6954fbf9e11c37a12e502aa0",{
+        const getAndUpdate = await Recipes.findByIdAndUpdate("695a32998d8f766db4189987",{
             name: "Updated Um Ali",
             prepTime: 60
          }, 
@@ -113,7 +93,7 @@ async function deleteRecipe(){
 async function getRecipeById(){
     try{
         const recipesByID = await Recipes.findById(
-             "6954fbf9e11c37a12e502aa0"
+             "695a32998d8f766db4189987"
         )
         if(recipesByID !== null){
             console.log(recipesByID)
@@ -129,16 +109,13 @@ async function getRecipeById(){
 
 }
 
-// getRecipeById() 
+// getRecipeById()
 
-*/ 
 
-// recipeUtilities.createRecipe() 
-
-// recipeUtilities.getAllRecipe()
-
-// recipeUtilities.updateRecipe() 
-
-// recipeUtilities.deleteRecipe()
-
-recipeUtilities.getRecipeById()
+module.exports = {
+createRecipe,
+getAllRecipe,
+updateRecipe,
+deleteRecipe,
+getRecipeById
+}
